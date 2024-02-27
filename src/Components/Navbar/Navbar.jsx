@@ -28,10 +28,10 @@ const Navbar = () => {
     }
 
   return (
-    <div className={active || pathname !== "/Fiverr-Clon-App" ? "navbar active" : "navbar"}>
+    <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">
         <div className="logo">
-        <Link to="/Fiverr-Clon-App" className='link'>
+        <Link to="/" className='link'>
             <span className='text'>fiverr</span>
         </Link>
             <span className='dot'>.</span>
@@ -56,38 +56,38 @@ const Navbar = () => {
                   )}
                   <Link className='link' to="/orders">Orders</Link>
                   <Link className='link' to="/messages">Message</Link>
-                  <Link className='link' to="/Fiverr-Clon-App">Logout</Link>
+                  <Link className='link' to="/">Logout</Link>
               </div>}
               </div>
             )}
         </div>
       </div>
-        {(active || pathname !== "/Fiverr-Clon-App") && (
+        {(active || pathname !== "/") && (
       <>
             <hr />
         <div className="menu">
-            <Link className='link' to="/Fiverr-Clon-App">
+            <Link className='link' to="/">
               Graphics & Design
             </Link>
-            <Link className='link' to="/Fiverr-Clon-App">
+            <Link className='link' to="/">
               Video & Animation
             </Link>
-            <Link className='link' to="/Fiverr-Clon-App">
+            <Link className='link' to="/">
               AI Services
             </Link>
-            <Link className='link' to="/Fiverr-Clon-App">
+            <Link className='link' to="/">
               Digital Marketing
             </Link>
-            <Link className='link' to="/Fiverr-Clon-App">
+            <Link className='link' to="/">
               Music & Audio
             </Link>
-            <Link className='link' to="/Fiverr-Clon-App">
+            <Link className='link' to="/">
               Programming & Tech
             </Link>
-            <Link className='link' to="/Fiverr-Clon-App">
+            <Link className='link' to="/">
               Business
             </Link>
-            <Link className='link' to="/Fiverr-Clon-App">
+            <Link className='link' to="/">
               Lifestyle
             </Link>
         </div>

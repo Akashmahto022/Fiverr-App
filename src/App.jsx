@@ -23,7 +23,7 @@ const App = () => {
       
       children:[
         {
-          path:"/Fiverr-Clon-App",
+          path:"/",
           element: <Home/>,
         },
         {
