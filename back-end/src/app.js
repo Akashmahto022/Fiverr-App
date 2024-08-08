@@ -12,5 +12,9 @@ app.get('/', (req, res)=>{
     res.send("hi Akash Mahto")
 })
 
+app.get('/name', (req, res)=>{
+    res.send("your name is Akash Mahto")
+})
+
 
 export {app}
