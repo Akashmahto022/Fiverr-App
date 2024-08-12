@@ -1,11 +1,9 @@
-import express, { Router } from "express";
-import {register, login, logout} from './../controllers/auth.controller.js'
+import express from "express";
+import {deleteUser} from './../controllers/user.controller.js'
+import { tokenVerify } from "../middlewares/jwt.js";
 
 const userRouter = express.Router();
 
-userRouter.post('/register', register)
-userRouter.post('/login', login)
-userRouter.post('/logout', logout)
-
+userRouter.delete("/:id",tokenVerify, deleteUser)
 
 export default userRouter;
