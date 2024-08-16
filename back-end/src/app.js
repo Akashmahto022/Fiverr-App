@@ -11,6 +11,9 @@ import cookieParser from 'cookie-parser'
 
 const app = express();
 
+
+
+
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
@@ -30,6 +33,14 @@ app.use("/api/v1/conversations", conversationRoute);
 app.use("/api/v1/message", messageRoute);
 app.use("/api/v1/reviews", reviewRoute);
 
+
+
+app.use((err, req, res,next)=>{
+  const errorStatus = err.status || 500
+  const errorMessage = err.message || "Something went wrong"
+
+  return res.status(errorStatus).send(errorMessage)
+})
 
 
 
