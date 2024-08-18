@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const ProjectsCard = ({item}) => {
   return (
-    <Link to="/Fiverr-Clon-App" className='link'>
+    <Link to="/gigs" className='link'>
     <div className='projectsCard'>
     <img src={item.img} alt="" />
     <div className="info">

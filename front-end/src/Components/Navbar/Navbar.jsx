@@ -24,7 +24,7 @@ const Navbar = () => {
     const currentUser={
       id: 1,
       username:"Akash",
-      isSeller:true
+      isSeller:false
     }
 
   return (
@@ -42,8 +42,8 @@ const Navbar = () => {
             <span>English</span>
             <span>Sign in</span>
             {!currentUser?.isSeller && <span>Become a Seller</span>}
-            {!currentUser && <button>join</button>}
-            {currentUser && (
+            {currentUser && <button className={active || pathname !== "/" ? "button" : ""}>join</button>}
+            {!currentUser && (
               <div className='user' onClick={()=>setOpen(!open)}>
               <img src="https://img.freepik.com/premium-photo/fire-alphabet-letter-r-isolated-black-background_564276-9258.jpg?w=740" alt="" />
               <span>{currentUser?.username}</span>
