@@ -13,6 +13,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Login from "./pages/login/Login";
 
 const App = () => {
 
@@ -25,6 +26,10 @@ const App = () => {
         {
           path:"/",
           element: <Home/>,
+        },
+        {
+          path:"/login",
+          element: <Login/>,
         },
         {
           path:"/gigs",
