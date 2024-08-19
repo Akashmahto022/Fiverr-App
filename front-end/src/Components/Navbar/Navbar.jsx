@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.scss";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import newRequest from "../../utils/newRequest";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate()
 
   const { pathname } = useLocation();
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
   };
+
 
   useEffect(() => {
     window.addEventListener("scroll", isActive);
@@ -20,11 +23,17 @@ const Navbar = () => {
     };
   }, []);
 
-  const currentUser = {
-    id: 1,
-    username: "Akash",
-    isSeller: false,
-  };
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+
+  const handleLogout = async()=>{
+    try {
+      await newRequest.post("/api/v1/auth/logout")
+      localStorage.setItem("currentUser", null)
+      navigate("/")
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
@@ -39,19 +48,19 @@ const Navbar = () => {
           <span>Fiverr Business</span>
           <span>Explore</span>
           <span>English</span>
-          <Link to="/login" className="link">
+         {!currentUser? <Link to="/login" className="link">
             <span className="text">Sign in</span>
-          </Link>
+          </Link> : ""}
           {!currentUser?.isSeller && <span>Become a Seller</span>}
-          {currentUser && (
+          {!currentUser && (
             <button className={active || pathname !== "/" ? "button" : ""}>
               join
             </button>
           )}
-          {!currentUser && (
+          {currentUser && (
             <div className="user" onClick={() => setOpen(!open)}>
               <img
-                src="https://img.freepik.com/premium-photo/fire-alphabet-letter-r-isolated-black-background_564276-9258.jpg?w=740"
+                src={currentUser.img || "img/noavatar.jpg"}
                 alt=""
               />
               <span>{currentUser?.username}</span>
@@ -73,7 +82,7 @@ const Navbar = () => {
                   <Link className="link" to="/messages">
                     Message
                   </Link>
-                  <Link className="link" to="/">
+                  <Link className="link" onClick={handleLogout}>
                     Logout
                   </Link>
                 </div>
