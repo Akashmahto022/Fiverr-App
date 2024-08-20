@@ -53,9 +53,11 @@ const Navbar = () => {
           </Link> : ""}
           {!currentUser?.isSeller && <span>Become a Seller</span>}
           {!currentUser && (
+            <Link to={'/register'}>
             <button className={active || pathname !== "/" ? "button" : ""}>
               join
             </button>
+            </Link> 
           )}
           {currentUser && (
             <div className="user" onClick={() => setOpen(!open)}>

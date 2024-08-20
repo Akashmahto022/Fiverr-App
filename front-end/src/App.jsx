@@ -14,6 +14,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 
 const App = () => {
 
@@ -30,6 +31,10 @@ const App = () => {
         {
           path:"/login",
           element: <Login/>,
+        },
+        {
+          path:"/register",
+          element: <Register/>,
         },
         {
           path:"/gigs",
