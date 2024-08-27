@@ -1,5 +1,5 @@
-import Gig from "../models/gig.model.js";
-import apiError from "../utils/apiError.js";
+import {Gig} from "../models/gig.model.js";
+import {apiError} from "../utils/apiError.js";
 
 export const createGig = async (req, res, next) => {
   if (!res.isSeller)
