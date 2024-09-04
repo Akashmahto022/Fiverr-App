@@ -18,8 +18,6 @@ const Login = () => {
       const response = await newRequest.post('/api/v1/auth/login',{username, password})
       localStorage.setItem("currentUser", JSON.stringify(response.data))
       navigate("/")
-      console.log(response.data);
-      console.log("ndvcjavdcj")
     } catch (error) {
       setError(error.response.data);
     }

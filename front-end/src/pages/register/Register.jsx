@@ -35,7 +35,7 @@ const Register = () => {
     e.preventDefault();
     const url = await upload(file);
     try {
-      await newRequest.post("/api/v1/auth/register", { ...user, img: url });
+      await newRequest.post("/api/v1/auth/register", { ...user, image: url });
       navigate("/")
     } catch (error) {
       console.log(error);
