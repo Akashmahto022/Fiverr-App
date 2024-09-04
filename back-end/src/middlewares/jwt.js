@@ -8,7 +8,7 @@ const tokenVerify = async (req, res, next) => {
 
   jwt.verify(
     token,
-    process.env.JWT_KEY_FOR_ACCESS_TOEKN,
+    process.env.JWT_KEY_FOR_ACCESS_TOKEN,
     async (err, payload) => {
       if (err) next(apiError(400, "Token is not valid"));
       res.userId = payload.id;

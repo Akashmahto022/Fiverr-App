@@ -3,12 +3,13 @@ import {apiError} from "../utils/apiError.js";
 
 export const createGig = async (req, res, next) => {
   if (!res.isSeller)
-    return next(apiError(403, "Only seller can create a gig!"));
+    return next(apiError(403, "Only sellers can create a gig!"));
 
   const newGig = new Gig({
     userId: req.userId,
     ...req.body,
   });
+
   try {
     const savedGig = await newGig.save();
     res.status(201).json(savedGig);
@@ -16,6 +17,7 @@ export const createGig = async (req, res, next) => {
     next(error);
   }
 };
+
 
 export const deleteGig = async (req, res, next) => {
   try {
@@ -40,16 +42,17 @@ export const getGig = async (req, res, next) => {
     next(error);
   }
 };
+
 export const getGigs = async (req, res, next) => {
   const queryGig = req.query;
 
   const filters = {
+    ...(queryGig.userId && {userId: queryGig.userId}),
     ...(queryGig.cat && { cat: queryGig.cat }),
     ...((queryGig.min || queryGig.max) && {
       price: queryGig.min && { $gt: queryGig.min },
     }),
     ...(queryGig.max && { $lt: queryGig.max }),
-
 
     ...(queryGig.search && {
       title: { $regex: queryGig.search, $options: "i" },

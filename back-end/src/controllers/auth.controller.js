@@ -27,12 +27,12 @@ const login = async (req, res, next) => {
       user.password
     );
     if (!isCorrectPassword) {
-      return next(apiError(404, "password in not coorect"));
+      return next(apiError(404, "password in not correct"));
     }
 
     const token = jwt.sign(
       { id: user._id, isSeller: user.isSeller },
-      process.env.JWT_KEY_FOR_ACCESS_TOEKN
+      process.env.JWT_KEY_FOR_ACCESS_TOKEN
     );
 
     const { password, ...info } = user._doc;
