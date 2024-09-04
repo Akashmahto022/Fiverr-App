@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './Gigs.scss';
 import {gigs} from "../../data"
 import GigCard from "../../Components/GigCard/GigCard"
+import {useQuery} from "@tanstack/react-query"
+import newRequest from '../../utils/newRequest';
 
 const Gigs = () => {
-
   const [open, setOpen] = useState(false);
   const [sort, setSort] = useState("sales")
+  const minRef = useRef();
+  const maxRef = useRef();
+
+
+
+  const { isPending, error, data } = useQuery({
+    queryKey: ['repoData'],
+    queryFn: () =>
+      newRequest.get("/api/v1/gigs/").then((res)=>res.data)
+  })
+
+  // console.log(data)
 
   const reSort = (type)=>{
     setSort(type)
