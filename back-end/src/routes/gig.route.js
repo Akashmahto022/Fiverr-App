@@ -11,7 +11,7 @@ const gigRouter = express.Router();
 
 gigRouter.post("/create", tokenVerify, createGig);
 gigRouter.delete("/:id", tokenVerify, deleteGig);
-gigRouter.get("/single/:id", tokenVerify, getGig);
+gigRouter.get("/single/:id", getGig);
 gigRouter.get("/",tokenVerify, getGigs);
 
 export default gigRouter;

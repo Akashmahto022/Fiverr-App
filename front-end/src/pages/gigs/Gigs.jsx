@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Gigs.scss";
 import { gigs } from "../../data";
 import GigCard from "../../Components/GigCard/GigCard";
@@ -17,11 +17,11 @@ const Gigs = () => {
   console.log(location);
 
   const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ["repoData"],
+    queryKey: ["gigs"],
     queryFn: () =>
       newRequest
         .get(
-          `/api/v1/gigs/${search}&min=${minRef.current.value}&max=${maxRef.current.value}`
+          `/api/v1/gigs/${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
         )
         .then((res) => {
           return res.data;
@@ -35,9 +35,13 @@ const Gigs = () => {
     setOpen(false);
   };
 
+  useEffect(() => {
+    refetch();
+  }, [sort]);
+
   const apply = () => {
     console.log(minRef, maxRef);
-    refetch()
+    refetch();
   };
 
   return (

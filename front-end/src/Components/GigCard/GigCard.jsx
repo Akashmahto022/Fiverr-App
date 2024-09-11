@@ -1,37 +1,53 @@
-import React from 'react';
-import "./GigCard.scss"
-import { Link } from 'react-router-dom';
+import React from "react";
+import "./GigCard.scss";
+import { Link } from "react-router-dom";
 
-const GigCard = ({item}) => {
+const GigCard = ({ item }) => {
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["gigUser"],
+    queryFn: () =>
+      newRequest.get(`/api/v1//users/${item.userId}`).then((res) => {
+        return res.data;
+      }),
+  });
+
   return (
-  <>
-    <Link to="/gig/123" className='link'>
-    <div className='gigcard'>
-        <img src={item.img} alt="" />
-        <div className="info">
-          <div className="user">
-            <img src={item.pp} alt="" />
-            <span>{item.username}</span>
+    <>
+      <Link to={`/gig/${item._id}`} className="link">
+        <div className="gigcard">
+          <img src={item.coverImage} alt="" />
+          <div className="info">
+            {isLoading ? (
+              "loading..."
+            ) : error ? (
+              "Something went wrong"
+            ) : (
+              <div className="user">
+                <img src={data.image || "/img/noavatar.jpg"} alt="" />
+                <span>{data.username}</span>
+              </div>
+            )}
+            <p>{item.desc}</p>
+            <div className="star">
+              <img src="../../img/star.png" alt="" />
+              <span>
+                {!isNaN(item.totalStars / item.starNumber) &&
+                  Math.round(item.totalStars / item.starNumber)}
+              </span>
+            </div>
           </div>
-          <p>{item.desc}</p>
-          <div className="star">
-            <img src="../../img/star.png" alt="" />
-            <span>{item.star}</span>
+          <hr />
+          <div className="details">
+            <img src="../../img/heart.png" alt="" />
+            <div className="price">
+              <span>Starting At</span>
+              <h2>${item.price}</h2>
+            </div>
           </div>
         </div>
-        <hr />
-        <div className="details">
-          <img src="../../img/heart.png" alt="" />
-          <div className="price">
-          <span>Starting At</span>
-          <h2>${item.price}</h2>
-          </div>
-        </div>
-
-    </div>
-    </Link>
+      </Link>
     </>
-  )
-}
+  );
+};
 
-export default GigCard
+export default GigCard;
