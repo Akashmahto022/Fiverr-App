@@ -51,7 +51,7 @@ const Gig = () => {
                   alt=""
                 />
                 <span>{dataUser.username}</span>
-                {!isNaN(data.totalStars / data.starNumber) && (
+                {/* {!isNaN(data.totalStars / data.starNumber) && (
                   <div className="stars">
                     {Array(Math.round(data.totalStars / data.starNumber))
                       .fill()
@@ -60,7 +60,7 @@ const Gig = () => {
                       ))}
                     <span>{Math.round(data.totalStars / data.starNumber)}</span>
                   </div>
-                )}
+                )} */}
               </div>
             )}
             <Slider slidesToShow={1} arrowsScroll={1} className="slider">
@@ -88,7 +88,7 @@ const Gig = () => {
                   />
                   <div className="info">
                     <span>{dataUser.username}</span>
-                    {!isNaN(data.totalStars / data.starNumber) && (
+                    {/* {!isNaN(data.totalStars / data.starNumber) && (
                       <div className="stars">
                         {Array(Math.round(data.totalStars / data.starNumber))
                           .fill()
@@ -99,7 +99,7 @@ const Gig = () => {
                           {Math.round(data.totalStars / data.starNumber)}
                         </span>
                       </div>
-                    )}
+                    )} */}
                     <button>Contact Me</button>
                   </div>
                 </div>
@@ -108,7 +108,7 @@ const Gig = () => {
                 <div className="items">
                   <div className="item">
                     <span className="title">From</span>
-                    <span className="desc">{dataUser.country}</span>
+                    <span className="desc">{"country"}</span>
                   </div>
                   <div className="item">
                     <span className="title">Avg. response time</span>
@@ -129,7 +129,7 @@ const Gig = () => {
                 </div>
                 <hr />
                 <p>
-                 {dataUser.description}
+                 {"dataUser.description"}
                 </p>
               </div>
             </div>

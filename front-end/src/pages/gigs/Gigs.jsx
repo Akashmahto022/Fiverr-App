@@ -13,7 +13,7 @@ const Gigs = () => {
   const minRef = useRef();
   const maxRef = useRef();
 
-  const { search } = useLocation();
+  const { search } = useLocation(); 
   console.log(location);
 
   const { isLoading, error, data, refetch } = useQuery({
@@ -64,7 +64,11 @@ const Gigs = () => {
             <span className="sortType">
               {sort === "sales" ? "Best Selling" : "Newest"}
             </span>
-            <img src="/img/down.png" alt="" onClick={() => setOpen(!open)} />
+            <img
+              src="../../img/down.png"
+              alt=""
+              onClick={() => setOpen(!open)}
+            />
             {open && (
               <div className="rightMenu">
                 {sort === "sales" ? (
