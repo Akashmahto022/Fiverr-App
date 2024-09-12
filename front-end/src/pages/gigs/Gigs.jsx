@@ -14,7 +14,6 @@ const Gigs = () => {
   const maxRef = useRef();
 
   const { search } = useLocation(); 
-  console.log(location);
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["gigs"],
@@ -28,7 +27,6 @@ const Gigs = () => {
         }),
   });
 
-  console.log(data);
 
   const reSort = (type) => {
     setSort(type);
@@ -40,7 +38,6 @@ const Gigs = () => {
   }, [sort]);
 
   const apply = () => {
-    console.log(minRef, maxRef);
     refetch();
   };
 
