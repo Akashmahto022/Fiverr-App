@@ -1,5 +1,5 @@
-import {Gig} from "../models/gig.model.js";
-import {apiError} from "../utils/apiError.js";
+import { Gig } from "../models/gig.model.js";
+import { apiError } from "../utils/apiError.js";
 
 export const createGig = async (req, res, next) => {
   if (!res.isSeller)
@@ -17,7 +17,6 @@ export const createGig = async (req, res, next) => {
     next(error);
   }
 };
-
 
 export const deleteGig = async (req, res, next) => {
   try {
@@ -44,26 +43,23 @@ export const getGig = async (req, res, next) => {
 };
 
 export const getGigs = async (req, res, next) => {
-  const queryGig = req.query;
+  const q = req.query;
 
   const filters = {
-    ...(queryGig.userId && {userId: queryGig.userId}),
-    ...(queryGig.category && { category: queryGig.category }),
-    ...((queryGig.min || queryGig.max) && {
-      price: queryGig.min && { $gt: queryGig.min },
-    }),
-    ...(queryGig.max && { $lt: queryGig.max }),
-
-    ...(queryGig.search && {
-      title: { $regex: queryGig.search, $options: "i" },
+    ...(q.userId && { userId: q.userId }),
+    ...(q.category && { category: q.category }),
+    ...((q.min || q.max) && {
+      price: {...(q.min && {$gt: q.min}),
+    ...(q.max && { $lt: q.max })}}),
+    ...(q.search && {
+      title: { $regex: q.search, $options: "i" },
     }),
   };
 
   try {
-    const gigs = await Gig.find(filters).sort({[queryGig.sort]: -1});
+    const gigs = await Gig.find(filters).sort({ [q.sort]: -1 });
     res.status(200).send(gigs);
   } catch (error) {
     next(error);
   }
 };
-

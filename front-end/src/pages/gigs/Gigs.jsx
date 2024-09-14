@@ -16,12 +16,14 @@ const Gigs = () => {
   const { search } = useLocation();
 
   const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ['repoData'],
+    queryKey: ["repoData"],
     queryFn: () =>
-      newRequest.get('/api/v1/gigs').then((res)=>
-        res.data
-      )
-  })
+      newRequest
+        .get(
+          `/api/v1/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}`
+        )
+        .then((res) => res.data),
+  });
   const reSort = (type) => {
     setSort(type);
     setOpen(false);
@@ -75,7 +77,7 @@ const Gigs = () => {
           {isLoading
             ? "loading..."
             : error
-            ? "Something went wrong"
+            ? "Something went wrong!"
             : data.map((gig) => <GigCard key={gig._id} item={gig} />)}
         </div>
       </div>
