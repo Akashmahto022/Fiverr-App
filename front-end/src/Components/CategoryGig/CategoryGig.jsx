@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const CategoryGig = ({item}) => {
   return (
-    <Link to="/gigs/?cat=design">
+    <Link to="/gigs">
     <div className='categoryGig'>
       <img src={item.img} alt="" />
       <span className='desc'>{item.desc}</span>

@@ -13,21 +13,15 @@ const Gigs = () => {
   const minRef = useRef();
   const maxRef = useRef();
 
-  const { search } = useLocation(); 
+  const { search } = useLocation();
 
   const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ["gigs"],
+    queryKey: ['repoData'],
     queryFn: () =>
-      newRequest
-        .get(
-          `/api/v1/gigs/${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
-        )
-        .then((res) => {
-          return res.data;
-        }),
-  });
-
-
+      newRequest.get('/api/v1/gigs').then((res)=>
+        res.data
+      )
+  })
   const reSort = (type) => {
     setSort(type);
     setOpen(false);
