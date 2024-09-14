@@ -20,7 +20,7 @@ const Gigs = () => {
     queryFn: () =>
       newRequest
         .get(
-          `/api/v1/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}`
+          `/api/v1/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
         )
         .then((res) => res.data),
   });
@@ -69,6 +69,7 @@ const Gigs = () => {
                 ) : (
                   <span onClick={() => reSort("sales")}>Best Selling</span>
                 )}
+                <span onClick={() => reSort("sales")}>Popular</span>
               </div>
             )}
           </div>

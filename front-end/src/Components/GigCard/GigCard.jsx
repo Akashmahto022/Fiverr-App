@@ -16,8 +16,6 @@ const GigCard = ({ item }) => {
         return res.data;
       }),
   });
-  console.log("display the user data");
-  console.log(data);
 
   return (
     <>
@@ -35,7 +33,7 @@ const GigCard = ({ item }) => {
                 <span>{data.username}</span>
               </div>
             )}
-            <p>{item.desc}</p>
+            <p>{item.description}</p>
             <div className="star">
               <img src="../../img/star.png" alt="" />
               <span>
