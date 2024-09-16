@@ -22,7 +22,7 @@ const Gigs = () => {
         .get(
           `/api/v1/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
         )
-        .then((res) => res.data),
+        .then((res) => {return res.data}),
   });
   const reSort = (type) => {
     setSort(type);
